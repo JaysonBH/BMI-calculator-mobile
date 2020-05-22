@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'reusable_card.dart';
 import 'icon_content.dart';
+import 'round_icon_button.dart';
 import 'constants.dart';
 
 enum Sex { Male, Female, None }
@@ -15,6 +16,7 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   Sex _activeSex = Sex.None;
   int _height = 70;
+  int _weight = 74;
 
   @override
   Widget build(BuildContext context) {
@@ -92,18 +94,19 @@ class _InputPageState extends State<InputPage> {
                     )
                   ],
                 ),
-                Slider(
-                  value: _height.toDouble(),
-                  min: 36.0,
-                  max: 84.0,
-                  activeColor: Color(0xFFEB1555),
-                  inactiveColor: Color(0xFF8D8E98),
-                  onChanged: (double sliderValue) {
-                    print(sliderValue);
-                    setState(() {
-                      _height = sliderValue.truncate();
-                    });
-                  },
+                SliderTheme(
+                  data: kSliderTheme,
+                  child: Slider(
+                    value: _height.toDouble(),
+                    min: 36.0,
+                    max: 84.0,
+                    onChanged: (double sliderValue) {
+                      print(sliderValue);
+                      setState(() {
+                        _height = sliderValue.truncate();
+                      });
+                    },
+                  ),
                 ),
               ],
             ),
@@ -111,7 +114,45 @@ class _InputPageState extends State<InputPage> {
           Expanded(
             child: Row(
               children: <Widget>[
-                Expanded(child: ReusableCard(color: kActiveCardColor)),
+                Expanded(
+                    child: ReusableCard(
+                  color: kActiveCardColor,
+                  cardChild: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        'WEIGHT',
+                        style: kLabelTextStyle,
+                      ),
+                      Text(
+                        _weight.toString(),
+                        style: kNumberLabelTextStyle,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          RoundIconButton(
+                            icon: FontAwesomeIcons.minus,
+                            functionality: () {
+                              setState(() {
+                                _weight--;
+                              });
+                            },
+                          ),
+                          SizedBox(width: 10.0),
+                          RoundIconButton(
+                            icon: FontAwesomeIcons.plus,
+                            functionality: () {
+                              setState(() {
+                                _weight++;
+                              });
+                            },
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                )),
                 Expanded(child: ReusableCard(color: kActiveCardColor)),
               ],
             ),
