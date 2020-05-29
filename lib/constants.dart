@@ -17,6 +17,11 @@ const kNumberLabelTextStyle = TextStyle(
   fontWeight: FontWeight.w900,
 );
 
+const kLargeButtonTextStyle = TextStyle(
+  fontSize: 25.0,
+  fontWeight: FontWeight.bold,
+);
+
 const kSliderTheme = SliderThemeData(
   activeTrackColor: Colors.white,
   inactiveTrackColor: Color(0xFF8D8E98),
