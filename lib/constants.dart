@@ -22,6 +22,26 @@ const kLargeButtonTextStyle = TextStyle(
   fontWeight: FontWeight.bold,
 );
 
+const kTitleTextStyle = TextStyle(
+  fontSize: 50.0,
+  fontWeight: FontWeight.bold,
+);
+
+const kResultsPageResultStyle = TextStyle(
+  color: Colors.green,
+  fontSize: 22.0,
+  fontWeight: FontWeight.bold,
+);
+
+const kResultsPageBMIStyle = TextStyle(
+  fontSize: 100.0,
+  fontWeight: FontWeight.bold,
+);
+
+const kResultsPageSuggestionStyle = TextStyle(
+  fontSize: 22,
+);
+
 const kSliderTheme = SliderThemeData(
   activeTrackColor: Colors.white,
   inactiveTrackColor: Color(0xFF8D8E98),

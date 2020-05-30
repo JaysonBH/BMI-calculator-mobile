@@ -1,10 +1,13 @@
+import 'package:bmi_calculator/screens/results_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'reusable_card.dart';
-import 'icon_content.dart';
-import 'round_icon_button.dart';
-import 'constants.dart';
+import '../components/reusable_card.dart';
+import '../components/icon_content.dart';
+import '../components/round_icon_button.dart';
+import '../components/bottom_button.dart';
+import '../constants.dart';
+import 'package:bmi_calculator/calculator_brain.dart';
 
 enum Sex { Male, Female, None }
 
@@ -15,8 +18,8 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   Sex _activeSex = Sex.None;
-  int _height = 70;
-  int _weight = 74;
+  int _height = 72;
+  int _weight = 165;
   int _age = 25;
 
   @override
@@ -196,23 +199,23 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/calculate');
-            },
-            child: Container(
-              color: kBottomContainerColor,
-              margin: EdgeInsets.only(top: 10.0),
-              padding: EdgeInsets.only(bottom: 20.0),
-              width: double.infinity,
-              height: kBottomContainerHeight,
-              child: Center(
-                  child: Text(
-                'CALCULATE',
-                style: kLargeButtonTextStyle,
-              )),
-            ),
-          ),
+          BottomButton(
+              text: 'CALCULATE',
+              functionality: () {
+                CalculatorBrain calc = CalculatorBrain(_height, _weight);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => ResultsPage(
+                              calcBrain: calc,
+                            )));
+//                Navigator.pushNamed(context, '/calculate',
+//                    arguments: <String, int>{
+//                      'height': _height,
+//                      'weight': _weight,
+//                    });
+              }),
+//              Navigator.pushNamed(context, '/calculate');
         ],
       ),
     );
